@@ -3,30 +3,30 @@ import axios from 'axios';
 
 const entity = 'pets';
 
-export function getAllPets() {
+export async function getAllPets() {
     return axios.get(`${base_url}/${entity}`);
 }
 
-export function getPetById(id) {
-    return axios.get(`${base_url}/${entity}/${id}`);
+export async function getPetById(id) {
+    return await axios.get(`${base_url}/${entity}/${id}`);
 }
 
-function createPet(pet) {
-    return axios.post(`${base_url}/${entity}`, pet);
+async function createPet(pet) {
+    return await axios.post(`${base_url}/${entity}`, pet);
 }
 
-function updatePet(pet) {
-    return axios.put(`${base_url}/${entity}/${pet.id}`, pet);
+async function updatePet(pet) {
+    return await axios.put(`${base_url}/${entity}/${pet.id}`, pet);
 }
 
-export function createOrUpdatePet(pet) {
+export async function createOrUpdatePet(pet) {
     if (pet.id) {
-        return updatePet(pet);
+        return await updatePet(pet);
     } else {
-        return createPet(pet);
+        return await createPet(pet);
     }
 }
 
-export function deletePet(id) {
-    return axios.delete(`${base_url}/${entity}/${id}`);
+export async function deletePet(id) {
+    return await axios.delete(`${base_url}/${entity}/${id}`);
 }
